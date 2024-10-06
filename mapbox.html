@@ -1,0 +1,55 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Project with Travel Modes</title>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+    <link rel="stylesheet" href="mapbox.css">
+</head>
+
+<body>
+    <header>
+        <h1>Map with Travel Modes</h1>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <div class="search-bar">
+                <input type="text" id="location-input1" placeholder="Search location...">
+                <input type="text" id="location-input2" placeholder="Search destination (optional)...">
+                <button id="search-button">Search & Get Directions</button>
+            </div>
+            <div class="feature-buttons">
+                <button id="find-restaurants">Find Nearby Restaurants</button>
+                <button id="find-schools">Find Nearby Schools</button>
+                <button id="find-parks">Find Nearby Parks</button>
+            </div>
+            <div class="travel-mode">
+                <h2>Travel Mode</h2>
+                <button id="get-cycling-info">Cycling</button>
+                <button id="get-walking-info">Walking</button>
+                <button id="get-bus-info">Driving</button>
+            </div>
+            <div class="distance-info">
+                <h2>Route Information</h2>
+                <p id="distance">Distance: N/A</p>
+                <p id="duration">Duration: N/A</p>
+            </div>
+        </aside>
+
+        <div id="map"></div>
+    </div>
+
+    <footer>
+        <p>Map Project - Contact us at info@mapproject.com</p>
+    </footer>
+
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+    <script src="mapbox.js"></script>
+</body>
+
+</html>
