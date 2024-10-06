@@ -1,11 +1,14 @@
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2hpZmEzMyIsImEiOiJjbTFjMDJzMmoyNWRvMnZzOGZzcXo3cHQ1In0.CLdUXxSpEVQV7OR2dhz6qw';
 
+// Initialize the map
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [-122.4194, 37.7749], // Default center (San Francisco)
     zoom: 13
 });
+
+// Add navigation control to the map
 map.addControl(new mapboxgl.NavigationControl());
 
 let markerStart, markerEnd;
@@ -22,9 +25,12 @@ function fetchDirections(start, end, travelMode) {
                 const route = data.routes[0].geometry.coordinates;
                 const distance = (data.routes[0].distance / 1000).toFixed(2);
                 const duration = (data.routes[0].duration / 60).toFixed(2);
+                
+                // Update distance and duration on the page
                 document.getElementById('distance').innerText = `Distance: ${distance} km`;
                 document.getElementById('duration').innerText = `Duration: ${duration} mins`;
 
+                // Update the route on the map
                 if (map.getSource('route')) {
                     map.getSource('route').setData({
                         type: 'Feature',
@@ -60,7 +66,7 @@ function fetchDirections(start, end, travelMode) {
                     });
                 }
 
-                // Add markers
+                // Add markers for start and end locations
                 if (markerStart) markerStart.remove();
                 if (markerEnd) markerEnd.remove();
 
@@ -74,7 +80,7 @@ function fetchDirections(start, end, travelMode) {
                     .setPopup(new mapboxgl.Popup().setText('End'))
                     .addTo(map);
 
-                // Fit to route
+                // Fit the map to the route bounds
                 const bounds = new mapboxgl.LngLatBounds();
                 route.forEach(coord => bounds.extend(coord));
                 map.fitBounds(bounds, { padding: 20 });
@@ -177,3 +183,7 @@ document.getElementById('search-button').addEventListener('click', handleSearch)
 document.getElementById('find-restaurants').addEventListener('click', () => fetchNearbyPoints(['restaurant']));
 document.getElementById('find-schools').addEventListener('click', () => fetchNearbyPoints(['school']));
 document.getElementById('find-parks').addEventListener('click', () => fetchNearbyPoints(['park']));
+
+
+
+
